@@ -17,17 +17,17 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: Text(
           title,
-          style: const TextStyle(
-            color: Colors.white,
-            fontFamily: 'Avenir',
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.headline2!.copyWith(color: Colors.white),
         ),
       ),
       iconTheme: const IconThemeData(color: Colors.black),
       actions: [
-        IconButton(onPressed: (){}, icon: const Icon(Icons.favorite))
+        IconButton(
+          onPressed: (){
+            Navigator.pushNamed(context, '/wishlist');
+          }, 
+          icon: const Icon(Icons.favorite)
+        )
       ],
     );
   }

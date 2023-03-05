@@ -1,6 +1,8 @@
+import 'package:e_commerce/config/app_router.dart';
+import 'package:e_commerce/config/theme.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/widgets.dart';
+import 'screens/screens.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,26 +16,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomeScreen(),
+      theme: theme(),
+      // home: const HomeScreen(),
+      onGenerateRoute: AppRouter.onGenerateRoute,
+      initialRoute: HomeScreen.routeName,
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
 
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomAppBar(title: "Zero to Hero",),
-      bottomNavigationBar: CustomNavBar(),
-    );
-  }
-}
 
 
 
