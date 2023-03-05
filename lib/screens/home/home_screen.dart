@@ -39,8 +39,15 @@ class HomeScreen extends StatelessWidget {
           const SectionTitle(
             title: 'RECOMMENDED',
           ),
-          //Product Card
-          ProductCard(product: Product.products[0],)
+          ProductCarousel(products: Product.products.where(
+            (product) => product.isRecommended).toList()
+          ),
+          const SectionTitle(
+            title: 'MOST POPULAR',
+          ),
+          ProductCarousel(products: Product.products.where(
+            (product) => product.isPopular).toList()
+          ),
         ],
       ),
     );
