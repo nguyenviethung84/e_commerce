@@ -3,22 +3,22 @@ import 'package:e_commerce/models/models.dart';
 import 'package:e_commerce/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/';
-  static Route route(){
+  static Route route() {
     return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => const HomeScreen()
-    );
+        settings: const RouteSettings(name: routeName),
+        builder: (_) => const HomeScreen());
   }
-  const HomeScreen({super.key});
 
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: "Zero to Hero",),
+      appBar: const CustomAppBar(
+        title: "Zero to Hero",
+      ),
       bottomNavigationBar: const CustomNavBar(),
       body: Column(
         children: [
@@ -30,11 +30,17 @@ class HomeScreen extends StatelessWidget {
               enlargeStrategy: CenterPageEnlargeStrategy.height,
             ),
             // items: imageSliders,
-            items: Category.categories.map(
-              (category) => HeroCarouselSlider(category: category,)
-            ).toList(),
+            items: Category.categories
+                .map((category) => HeroCarouselSlider(
+                      category: category,
+                    ))
+                .toList(),
           ),
-          const SectionTitle(title: 'RECOMMENDED',),
+          const SectionTitle(
+            title: 'RECOMMENDED',
+          ),
+          //Product Card
+          ProductCard(product: Product.products[0],)
         ],
       ),
     );
