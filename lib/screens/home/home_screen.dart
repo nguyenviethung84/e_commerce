@@ -20,17 +20,22 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(title: "Zero to Hero",),
       bottomNavigationBar: const CustomNavBar(),
-      body: CarouselSlider(
-        options: CarouselOptions(
-          aspectRatio: 1.5,
-          viewportFraction: 0.9,
-          enlargeCenterPage: true,
-          enlargeStrategy: CenterPageEnlargeStrategy.height,
-        ),
-        // items: imageSliders,
-        items: Category.categories.map(
-          (category) => HeroCarouselSlider(category: category,)
-        ).toList(),
+      body: Column(
+        children: [
+          CarouselSlider(
+            options: CarouselOptions(
+              aspectRatio: 1.5,
+              viewportFraction: 0.9,
+              enlargeCenterPage: true,
+              enlargeStrategy: CenterPageEnlargeStrategy.height,
+            ),
+            // items: imageSliders,
+            items: Category.categories.map(
+              (category) => HeroCarouselSlider(category: category,)
+            ).toList(),
+          ),
+          const SectionTitle(title: 'RECOMMENDED',),
+        ],
       ),
     );
   }
