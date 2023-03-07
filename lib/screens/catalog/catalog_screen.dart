@@ -1,15 +1,19 @@
+import 'package:e_commerce/models/category_model.dart';
 import 'package:e_commerce/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class CatalogScreen extends StatelessWidget {
   static const String routeName = '/catalog';
-  static Route route(){
+
+  final Category category;
+  const CatalogScreen({super.key, required this.category});
+  
+  static Route route({required Category category}){
     return MaterialPageRoute(
       settings: const RouteSettings(name: routeName),
-      builder: (_) => const CatalogScreen()
+      builder: (_) => CatalogScreen(category: category,)
     );
   }
-  const CatalogScreen({super.key});
 
 
   @override
