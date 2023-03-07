@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
+  final double withFactor;
   
   const ProductCard({
-    Key? key, required this.product,
+    Key? key, required this.product, this.withFactor = 2.5,
   }) : super(key: key);
 
   @override
