@@ -47,7 +47,7 @@ class CartScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Add \$20 for FREE Delivery',
+                      Cart().freeDeliveryString,
                       style: Theme.of(context).textTheme.headline5,
                     ),
                     ElevatedButton(
@@ -69,8 +69,15 @@ class CartScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 10,),
-                CartProductCard(product: Product.products[0],),
-                CartProductCard(product: Product.products[1],),
+                SizedBox(
+                  height: 400,
+                  child: ListView.builder(
+                    itemCount: Cart.products.length,
+                    itemBuilder: (context, index){
+                      return CartProductCard(product: Cart.products[index],);
+                    }
+                  ),
+                ),
               ],
             ),
 
@@ -89,7 +96,7 @@ class CartScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.headline5,
                           ),
                           Text(
-                            '\$5.98',
+                            '\$${Cart().subtotalString}',
                             style: Theme.of(context).textTheme.headline6,
                           )
                         ],
@@ -103,7 +110,7 @@ class CartScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.headline5,
                           ),
                           Text(
-                            '\$1.90',
+                            '\$${Cart().deliveryFeeString}',
                             style: Theme.of(context).textTheme.headline6,
                           )
                         ],
@@ -137,7 +144,7 @@ class CartScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.headline5!.copyWith(color: Colors.white),
                             ),
                             Text(
-                              '\$8.90',
+                            '\$${Cart().totalString}',
                               style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.white),
                             )
                           ],
