@@ -23,7 +23,7 @@ class ProductScreen extends StatelessWidget {
       appBar: CustomAppBar(title: product.name,),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
-        child: Container(
+        child: SizedBox(
           height: 70,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -37,7 +37,7 @@ class ProductScreen extends StatelessWidget {
                 onPressed: () {}, 
               ),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: Colors.white),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                 child: Text(
                   'ADD TO CARD',
                   style: Theme.of(context).textTheme.headline3,
