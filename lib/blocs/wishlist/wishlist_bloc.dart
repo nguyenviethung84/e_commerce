@@ -22,9 +22,11 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
   void _onAddWishlistProduct(AddWishlistProduct event, Emitter<WishlistState> emit){
     final state = this.state;
     if (state is WishlistLoaded) {
-      WishlistLoaded(
-        wishlist: Wishlist(
-          products: List.from(state.wishlist.products)..add(event.product)
+      emit(
+        WishlistLoaded(
+          wishlist: Wishlist(
+            products: List.from(state.wishlist.products)..add(event.product)
+          )
         )
       );
     }
@@ -33,9 +35,11 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
   void _onRemoveWishlistProduct(RemoveWishlistProduct event, Emitter<WishlistState> emit){
     final state = this.state;
     if (state is WishlistLoaded) {
-      WishlistLoaded(
-        wishlist: Wishlist(
-          products: List.from(state.wishlist.products)..remove(event.product)
+      emit(
+        WishlistLoaded(
+          wishlist: Wishlist(
+            products: List.from(state.wishlist.products)..remove(event.product)
+          )
         )
       );
     }
