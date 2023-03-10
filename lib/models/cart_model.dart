@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 
 class Cart extends Equatable{
   final List<Product> products;
+
   const Cart({this.products = const <Product>[]});
 
   double get subtotal =>

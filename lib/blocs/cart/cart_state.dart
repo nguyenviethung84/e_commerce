@@ -18,7 +18,7 @@ class CartLoaded extends CartState {
   const CartLoaded({this.cart = const Cart()});
   
   @override
-  List<Object> get props => [];
+  List<Object> get props => [cart];
 }
 
 class CartError extends CartState {

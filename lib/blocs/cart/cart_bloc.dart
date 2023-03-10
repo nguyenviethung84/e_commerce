@@ -9,5 +9,21 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(CartLoading()) {
     on<CartEvent>((event, emit) {
     });
+    on<CartStarted>(_onCartStarted);
+    on<CartProductAdded>(_onCartProductAdded);
+    on<CartProductRemoved>(_onCartProductRemoved);
   }
+
+  void _onCartStarted(CartStarted event, Emitter<CartState> emit){
+    emit(
+      const CartLoaded()
+    );
+  }
+  void _onCartProductAdded(CartProductAdded event, Emitter<CartState> emit){
+    final state = this.state;
+    // emit(
+    //   CartLoaded(cart: Cart(products: List.from(state.cart.products)..add(event.product))),
+    // );
+  }
+  void _onCartProductRemoved(CartProductRemoved event, Emitter<CartState> emit){}
 }
