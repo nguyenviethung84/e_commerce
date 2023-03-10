@@ -11,18 +11,20 @@ class ProductScreen extends StatelessWidget {
   final Product product;
   const ProductScreen({super.key, required this.product});
 
-  static Route route({required Product product}){
+  static Route route({required Product product}) {
     return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => ProductScreen(product: product,)
-    );
+        settings: const RouteSettings(name: routeName),
+        builder: (_) => ProductScreen(
+              product: product,
+            ));
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: product.name,),
+      appBar: CustomAppBar(
+        title: product.name,
+      ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
         child: SizedBox(
@@ -31,118 +33,141 @@ class ProductScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
-                icon: const Icon(Icons.share, color: Colors.white,),
-                onPressed: () {}, 
+                icon: const Icon(
+                  Icons.share,
+                  color: Colors.white,
+                ),
+                onPressed: () {},
               ),
               BlocBuilder<WishlistBloc, WishlistState>(
                 builder: (context, state) {
                   return IconButton(
-                    icon: const Icon(Icons.favorite, color: Colors.white,),
+                    icon: const Icon(
+                      Icons.favorite,
+                      color: Colors.white,
+                    ),
                     onPressed: () {
                       context
                           .read<WishlistBloc>()
                           .add(AddWishlistProduct(product));
-                      const snackBar = SnackBar(content: Text('Added to your Wishlist'));
+                      const snackBar =
+                          SnackBar(content: Text('Added to your Wishlist'));
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     },
                   );
                 },
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                child: Text(
-                  'ADD TO CARD',
-                  style: Theme.of(context).textTheme.headline3,
-                ),
-                onPressed: () {}, 
-              )
+              BlocBuilder<CartBloc, CartState>(builder: (context, state) {
+                return ElevatedButton(
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                  child: Text(
+                    'ADD TO CARD',
+                    style: Theme.of(context).textTheme.headline3,
+                  ),
+                  onPressed: () {
+                    context.read<CartBloc>().add(CartProductAdded(product));
+                    const snackBar = SnackBar(content: Text('Added to cart'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    Navigator.pushNamed(context, '/cart');
+                  },
+                );
+              })
             ],
           ),
         ),
       ),
-      body: ListView(children: [
-        CarouselSlider(
-          items: [
-            HeroCarouselSlider(product: product,)
-          ], 
-          options: CarouselOptions(
-            aspectRatio: 1.5,
-            viewportFraction: 0.9,
-            enlargeCenterPage: true,
-            enlargeStrategy: CenterPageEnlargeStrategy.height
-          )
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Stack(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 60,
-                alignment: Alignment.bottomCenter,
-                color: Colors.black.withAlpha(90),
-              ),
-              Container(
-                margin: const EdgeInsets.all(5.0),
-                width: MediaQuery.of(context).size.width -10,
-                height: 50,
-                color: Colors.black,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        product.name,
-                        style: Theme.of(context).textTheme.headline5!.copyWith(color: Colors.white),
-                      ),
-                      Text(
-                        '${product.price}',
-                        style: Theme.of(context).textTheme.headline5!.copyWith(color: Colors.white),
-                      )
-                    ],
-                  ),
+      body: ListView(
+        children: [
+          CarouselSlider(
+              items: [
+                HeroCarouselSlider(
+                  product: product,
+                )
+              ],
+              options: CarouselOptions(
+                  aspectRatio: 1.5,
+                  viewportFraction: 0.9,
+                  enlargeCenterPage: true,
+                  enlargeStrategy: CenterPageEnlargeStrategy.height)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Stack(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 60,
+                  alignment: Alignment.bottomCenter,
+                  color: Colors.black.withAlpha(90),
                 ),
-              )
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: ExpansionTile(
-            initiallyExpanded: true,
-            title: Text(
-              'Product Information',
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            children: [
-              ListTile(
-                title: Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
-                  style: Theme.of(context).textTheme.bodyText1,
+                Container(
+                  margin: const EdgeInsets.all(5.0),
+                  width: MediaQuery.of(context).size.width - 10,
+                  height: 50,
+                  color: Colors.black,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          product.name,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline5!
+                              .copyWith(color: Colors.white),
+                        ),
+                        Text(
+                          '${product.price}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline5!
+                              .copyWith(color: Colors.white),
+                        )
+                      ],
+                    ),
                   ),
-              )
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: ExpansionTile(
-            title: Text(
-              'Delivery Information',
-              style: Theme.of(context).textTheme.headline3,
+                )
+              ],
             ),
-            children: [
-              ListTile(
-                title: Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
-                  style: Theme.of(context).textTheme.bodyText1,
-                  ),
-              )
-            ],
           ),
-        ),
-      ],),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: ExpansionTile(
+              initiallyExpanded: true,
+              title: Text(
+                'Product Information',
+                style: Theme.of(context).textTheme.headline3,
+              ),
+              children: [
+                ListTile(
+                  title: Text(
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: ExpansionTile(
+              title: Text(
+                'Delivery Information',
+                style: Theme.of(context).textTheme.headline3,
+              ),
+              children: [
+                ListTile(
+                  title: Text(
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
