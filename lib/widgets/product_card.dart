@@ -1,15 +1,17 @@
+import 'package:e_commerce/blocs/blocs.dart';
 import 'package:e_commerce/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
   final double withFactor;
   final double leftPosition;
   final bool isWishlist;
-  
+
   const ProductCard({
-    Key? key, 
-    required this.product, 
+    Key? key,
+    required this.product,
     this.withFactor = 2.5,
     this.leftPosition = 5,
     this.isWishlist = false,
@@ -45,7 +47,7 @@ class ProductCard extends StatelessWidget {
             top: 65,
             left: leftPosition + 5,
             child: Container(
-              width: withValue - 15 - leftPosition,
+              width: withValue - 5 - leftPosition,
               height: 70,
               decoration: const BoxDecoration(color: Colors.black),
               child: Padding(
@@ -75,24 +77,38 @@ class ProductCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: IconButton(
-                        onPressed: () {}, 
-                        icon: const Icon(
-                          Icons.add_circle,
-                          color: Colors.white,
-                        )
-                      ),
+                    BlocBuilder<CartBloc, CartState>(
+                      builder: (context, state) {
+                        if(state is CartLoading){
+                          return const Center(child: CircularProgressIndicator(),);
+                        }
+                        if(state is CartLoaded){
+                          return Expanded(
+                            child: IconButton(
+                                onPressed: () {
+                                  context.read<CartBloc>().add(CartProductAdded(product));
+                                },
+                                icon: const Icon(
+                                  Icons.add_circle,
+                                  color: Colors.white,
+                                )),
+                          );
+                        }else{
+                          return const Text('Something were wrong');
+                        }
+
+                      },
                     ),
-                    isWishlist ? Expanded(
-                      child: IconButton(
-                        onPressed: () {}, 
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Colors.white,
-                        )
-                      ),
-                    ) : const SizedBox(),
+                    isWishlist
+                        ? Expanded(
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                )),
+                          )
+                        : const SizedBox(),
                   ],
                 ),
               ),
