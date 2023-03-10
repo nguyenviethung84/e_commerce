@@ -7,8 +7,6 @@ part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(CartLoading()) {
-    on<CartEvent>((event, emit) {
-    });
     on<CartStarted>(_onCartStarted);
     on<CartProductAdded>(_onCartProductAdded);
     on<CartProductRemoved>(_onCartProductRemoved);
@@ -16,14 +14,31 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
   void _onCartStarted(CartStarted event, Emitter<CartState> emit){
     emit(
-      const CartLoaded()
+      CartLoaded(cart: event.cart)
     );
   }
   void _onCartProductAdded(CartProductAdded event, Emitter<CartState> emit){
     final state = this.state;
-    // emit(
-    //   CartLoaded(cart: Cart(products: List.from(state.cart.products)..add(event.product))),
-    // );
+    if (state is CartLoaded) {
+      emit(
+        CartLoaded(
+          cart: Cart(
+            products: List.from(state.cart.products)..add(event.product)
+          )
+        ),
+      );
+    }
   }
-  void _onCartProductRemoved(CartProductRemoved event, Emitter<CartState> emit){}
+  void _onCartProductRemoved(CartProductRemoved event, Emitter<CartState> emit){
+    final state = this.state;
+    if (state is CartLoaded) {
+      emit(
+        CartLoaded(
+          cart: Cart(
+            products: List.from(state.cart.products)..remove(event.product)
+          )
+        ),
+      );
+    }
+  }
 }
