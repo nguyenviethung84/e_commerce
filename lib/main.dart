@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'screens/screens.dart';
 
 void main() {
+  // Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
 
