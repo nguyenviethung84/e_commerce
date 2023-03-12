@@ -64,14 +64,14 @@ class ProductCard extends StatelessWidget {
                             product.name,
                             style: Theme.of(context)
                                 .textTheme
-                                .headline5!
+                                .headlineSmall!
                                 .copyWith(color: Colors.white),
                           ),
                           Text(
                             '\$${product.price}',
                             style: Theme.of(context)
                                 .textTheme
-                                .headline6!
+                                .titleLarge!
                                 .copyWith(color: Colors.white),
                           )
                         ],

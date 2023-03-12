@@ -36,7 +36,7 @@ class SplashScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             child: Text(
               'HungNV',
-              style: Theme.of(context).textTheme.headline2!.copyWith(color: Colors.white),
+              style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.white),
             ),
           )
         ],

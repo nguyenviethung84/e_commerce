@@ -11,42 +11,42 @@ ThemeData theme(){
 
 TextTheme textTheme(){
   return const TextTheme(
-    headline1: TextStyle(
+    displayLarge: TextStyle(
       color: Colors.black,
       fontSize: 32,
       fontWeight: FontWeight.bold
     ),
-    headline2: TextStyle(
+    displayMedium: TextStyle(
       color: Colors.black,
       fontSize: 24,
       fontWeight: FontWeight.bold
     ),
-    headline3: TextStyle(
+    displaySmall: TextStyle(
       color: Colors.black,
       fontSize: 18,
       fontWeight: FontWeight.bold
     ),
-    headline4: TextStyle(
+    headlineMedium: TextStyle(
       color: Colors.black,
       fontSize: 16,
       fontWeight: FontWeight.bold
     ),
-    headline5: TextStyle(
+    headlineSmall: TextStyle(
       color: Colors.black,
       fontSize: 14,
       fontWeight: FontWeight.bold
     ),
-    headline6: TextStyle(
+    titleLarge: TextStyle(
       color: Colors.black,
       fontSize: 14,
       fontWeight: FontWeight.normal
     ),
-    bodyText1: TextStyle(
+    bodyLarge: TextStyle(
       color: Colors.black,
       fontSize: 12,
       fontWeight: FontWeight.normal
     ),
-    bodyText2: TextStyle(
+    bodyMedium: TextStyle(
       color: Colors.black,
       fontSize: 10,
       fontWeight: FontWeight.normal

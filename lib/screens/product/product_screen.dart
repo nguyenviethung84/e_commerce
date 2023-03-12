@@ -63,7 +63,7 @@ class ProductScreen extends StatelessWidget {
                       ElevatedButton.styleFrom(backgroundColor: Colors.white),
                   child: Text(
                     'ADD TO CARD',
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.displaySmall,
                   ),
                   onPressed: () {
                     context.read<CartBloc>().add(CartProductAdded(product));
@@ -114,14 +114,14 @@ class ProductScreen extends StatelessWidget {
                           product.name,
                           style: Theme.of(context)
                               .textTheme
-                              .headline5!
+                              .headlineSmall!
                               .copyWith(color: Colors.white),
                         ),
                         Text(
                           '${product.price}',
                           style: Theme.of(context)
                               .textTheme
-                              .headline5!
+                              .headlineSmall!
                               .copyWith(color: Colors.white),
                         )
                       ],
@@ -137,13 +137,13 @@ class ProductScreen extends StatelessWidget {
               initiallyExpanded: true,
               title: Text(
                 'Product Information',
-                style: Theme.of(context).textTheme.headline3,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               children: [
                 ListTile(
                   title: Text(
                     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
-                    style: Theme.of(context).textTheme.bodyText1,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 )
               ],
@@ -154,13 +154,13 @@ class ProductScreen extends StatelessWidget {
             child: ExpansionTile(
               title: Text(
                 'Delivery Information',
-                style: Theme.of(context).textTheme.headline3,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               children: [
                 ListTile(
                   title: Text(
                     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
-                    style: Theme.of(context).textTheme.bodyText1,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 )
               ],
