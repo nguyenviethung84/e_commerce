@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CustomNavBar extends StatelessWidget {
   final String screen;
   final Product? product;
-  const CustomNavBar(String routeName, {
+  const CustomNavBar({
     Key? key,
     required this.screen,
     this.product,

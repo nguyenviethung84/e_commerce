@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
       appBar: const CustomAppBar(
         title: "Zero to Hero",
       ),
-      bottomNavigationBar: const CustomNavBar(),
+      bottomNavigationBar: const CustomNavBar(screen: routeName,),
       body: Column(
         children: [
           BlocBuilder<CategoryBloc, CategoryState>(
