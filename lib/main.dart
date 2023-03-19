@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           create: (_) => WishlistBloc()..add(const StartWishlist()),
         ),
         BlocProvider(
-          create: (_) => CartBloc()..add(const CartStarted()),
+          create: (_) => CartBloc()..add(LoadCart()),
         ),
         BlocProvider(
           create: (context) => CheckoutBloc(

@@ -86,7 +86,7 @@ class ProductCard extends StatelessWidget {
                           return Expanded(
                             child: IconButton(
                                 onPressed: () {
-                                  context.read<CartBloc>().add(CartProductAdded(product));
+                                  context.read<CartBloc>().add(AddProduct(product));
                                 },
                                 icon: const Icon(
                                   Icons.add_circle,
