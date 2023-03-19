@@ -1,4 +1,5 @@
 import 'package:e_commerce/blocs/blocs.dart';
+import 'package:e_commerce/blocs/checkout/checkout_bloc.dart';
 import 'package:e_commerce/config/app_router.dart';
 import 'package:e_commerce/config/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,6 +26,12 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) => WishlistBloc()..add(const StartWishlist()),
+        ),
+        BlocProvider(
+          create: (context) => CheckoutBloc(
+            cartBloc: context.read<CartBloc>(),
+            checkoutRepository: CheckoutRepository(),
+          )
         ),
         BlocProvider(
           create: (_) => CartBloc()..add(const CartStarted()),
