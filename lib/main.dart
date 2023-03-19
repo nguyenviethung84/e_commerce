@@ -28,13 +28,13 @@ class MyApp extends StatelessWidget {
           create: (_) => WishlistBloc()..add(const StartWishlist()),
         ),
         BlocProvider(
+          create: (_) => CartBloc()..add(const CartStarted()),
+        ),
+        BlocProvider(
           create: (context) => CheckoutBloc(
             cartBloc: context.read<CartBloc>(),
             checkoutRepository: CheckoutRepository(),
           )
-        ),
-        BlocProvider(
-          create: (_) => CartBloc()..add(const CartStarted()),
         ),
         BlocProvider(
           create: (_) => CategoryBloc(categoryRepository: CategoryRepository())..add(LoadCategories()),
@@ -46,9 +46,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: theme(),
-        // home: const HomeScreen(),
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: HomeScreen.routeName,
+        initialRoute: SplashScreen.routeName,
       ),
     );
   }

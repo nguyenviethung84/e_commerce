@@ -35,8 +35,8 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
           add(UpdateCheckout(cart: state.cart));
         }
       });
-      on<UpdateCheckout>(_onUpdateCheckout as EventHandler<UpdateCheckout, CheckoutState>);
-      on<ConfirmCheckout>(_onConfirmCheckout as EventHandler<ConfirmCheckout, CheckoutState>);
+      // on<UpdateCheckout>(_onUpdateCheckout as EventHandler<UpdateCheckout, CheckoutState>);
+      // on<ConfirmCheckout>(_onConfirmCheckout as EventHandler<ConfirmCheckout, CheckoutState>);
   }
 
   void _onUpdateCheckout(UpdateCheckout event, CheckoutState state){
