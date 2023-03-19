@@ -32,6 +32,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => CategoryBloc(categoryRepository: CategoryRepository())..add(LoadCategories()),
         ),
+        BlocProvider(
+          create: (_) => ProductBloc(productRepository: ProductRepository())..add(LoadProducts()),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
