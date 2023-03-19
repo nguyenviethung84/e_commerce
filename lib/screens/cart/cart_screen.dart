@@ -20,25 +20,7 @@ class CartScreen extends StatelessWidget {
       appBar: const CustomAppBar(
         title: "Cart",
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
-        child: SizedBox(
-          height: 70,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                child: Text(
-                  'GO TO CHECKOUT',
-                  style: Theme.of(context).textTheme.displaySmall!,
-                ),
-                onPressed: () {},
-              )
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: const CustomNavBar(screen: routeName),
       body: BlocBuilder<CartBloc, CartState>(builder: (context, state) {
         if (state is CartLoading) {
           return const Center(
@@ -82,7 +64,7 @@ class CartScreen extends StatelessWidget {
                       height: 10,
                     ),
                     SizedBox(
-                      height: 400,
+                      height: 380,
                       child: ListView.builder(
                           // itemCount: state.cart.products.length,
                         itemCount: state.cart.productQuantity(state.cart.products).keys.length,
