@@ -35,6 +35,8 @@ class CustomNavBar extends StatelessWidget {
         return _buildNavBar(context);
       case '/wishlist':
         return _buildNavBar(context);
+      case '/order-confirmation':
+        return _buildNavBar(context);
       case '/product':
         return _buildAddToCartNavBar(context, product);
       case '/cart':
@@ -176,6 +178,7 @@ class CustomNavBar extends StatelessWidget {
                   onPressed: () {
                     context.read<CheckoutBloc>().add(
                         ConfirmCheckout(checkout: state.checkout));
+                    Navigator.pushNamed(context, '/order-confirmation');
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
